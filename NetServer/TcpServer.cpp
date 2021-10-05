@@ -57,6 +57,9 @@ void TcpServer::createNewConnection(){
         ++conncount_;
         connectionmap_[connfd] = spconnection;
 
+        //触发应用层新连接回调
+        newConnectionCallback_(spconnection);
+
         spconnection->addChannelToEventLoop();
         std::cout << "New Connection --ip : " << inet_ntoa(clientaddr.sin_addr) << std::endl;
     }

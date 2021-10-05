@@ -36,6 +36,7 @@ private:
 
     //业务回调函数
     MessageCallback msgCallback_;
+    Callback newConnectionCallback_;
     Callback writeFinishedCallback_;
     Callback closeCallback_;
     Callback errorCallback_;
@@ -49,6 +50,9 @@ public:
     //设置回调函数
     void setMessageCallback(const MessageCallback& mcb){
         msgCallback_ = mcb;
+    }
+    void setNewConnectionCallback(const Callback& cb){
+        newConnectionCallback_ = cb;
     }
     void setCloseTcpconnection(const Callback& cb){
         closeCallback_ = cb;

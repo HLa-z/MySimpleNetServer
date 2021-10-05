@@ -12,7 +12,6 @@ int getWakeUpFD(){
         perror("eventfd() error");
         exit(-1);
     }
-    std::cout << "getWakeUpFD" << std::endl;
     return fd;
 }
 

@@ -44,7 +44,7 @@ void Poller::addChannel(Channel* channel){
         std::lock_guard<std::mutex> lock(mapmutex_);
         channelmap_[fd] = channel;
     }
-    std::cout << "addChannel : " << fd << std::endl;
+    //std::cout << "addChannel : " << fd << std::endl;
 }
 
 void Poller::removeChannel(Channel* channel){
@@ -57,7 +57,7 @@ void Poller::removeChannel(Channel* channel){
         perror("removeChannel error");
         exit(-1);
     }
-    std::cout << "removeChannel : " << fd << std::endl;    
+    //std::cout << "removeChannel : " << fd << std::endl;    
 }
 
 void Poller::updateChannel(Channel* channel){
@@ -70,7 +70,7 @@ void Poller::updateChannel(Channel* channel){
         perror("updateChannel error");
         exit(-1);
     }
-    std::cout << "updateChannel : " << fd << std::endl;    
+    //std::cout << "updateChannel : " << fd << std::endl;    
 }
 
 //int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout);

@@ -13,7 +13,7 @@ Socket::Socket(){
         perror("socket()");
         exit(-1);
     }
-    std::cout << "create Socket : fd = " << serverfd_ << std:: endl;
+    //std::cout << "create Socket : fd = " << serverfd_ << std:: endl;
 }
 
 Socket::~Socket(){
@@ -70,7 +70,7 @@ bool Socket::Listen(){
 int Socket::Accept(struct sockaddr_in& client_addr){
     socklen_t len = sizeof(client_addr);
     int client_fd = accept(serverfd_, (struct sockaddr*)&client_addr, &len);
-    std::cout << "server accept client_fd : " << client_fd << std::endl;
+    //std::cout << "server accept client_fd : " << client_fd << std::endl;
     return client_fd;
 }
 

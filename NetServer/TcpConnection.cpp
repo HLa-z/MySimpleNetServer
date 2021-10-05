@@ -24,7 +24,7 @@ TcpConnection::TcpConnection(int fd, EventLoop* loop, struct sockaddr_in opposit
 }
 
 TcpConnection::~TcpConnection(){
-    std::cout << "TcpConnection " << fd_ << " closed" << std::endl;
+    std::cout << "Disconnected ip :" << inet_ntoa(oppositeaddr_.sin_addr) << std::endl;
     loop_->removeChannelToPoller(&channel_);
     close(fd_);
 }
@@ -92,6 +92,12 @@ void TcpConnection::sendData(const std::string& data){
     bufferout_ += data;
     //在loop中发送
     loop_->addTask(std::bind(&TcpConnection::writeHandle, this));
+}
+
+void TcpConnection::shutdown(){
+    if(closed_) return ;
+    //
+    loop_->addTask(std::bind(&TcpConnection::closeHandle, shared_from_this()));
 }
 
 

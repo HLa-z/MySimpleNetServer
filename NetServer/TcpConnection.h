@@ -39,10 +39,10 @@ private:
     std::string bufferin_;
     std::string bufferout_;
 
-    //接收到数据后的回调函数
+    //回调函数
     MessageCallback msgCallback_;
     Callback writeFinishedCallback_;
-    Callback closeTcpconnectionCallback_;
+    Callback closeTcpconnectionCallback_; //应用层的回调
     Callback errorCallback_;
     Callback clearConnection_;  //在tcpserver中删除连接
 
@@ -67,6 +67,8 @@ public:
 
     //数据发送要在负责IO的loop中发送，更新loop中的的channel，设置envens为EPOLLOUT
     void sendByLoop();
+
+    void shutdown();
 
     //设置回调函数
     void setMessageCallback(const MessageCallback& mcb){
